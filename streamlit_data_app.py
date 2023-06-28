@@ -23,7 +23,10 @@ os.makedirs(cache_dir, exist_ok=True)
 
 # Upgrade pip and install packages
 def install_packages():
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+    with open('requirements.txt') as f:
+        packages = f.read().splitlines()
+    for package in packages:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 install_packages()
 
