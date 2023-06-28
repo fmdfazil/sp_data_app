@@ -6,6 +6,19 @@
 #user_input = st.text_input('User:', value='', max_chars=500)
 #submit_button = st.button('Send')
 
+
+import os
+import tempfile
+
+# Set the cache directory
+cache_dir = os.path.join(tempfile.gettempdir(), "pandasai_cache")
+os.makedirs(cache_dir, exist_ok=True)
+
+# Set the cache file path
+cache_file = os.path.join(cache_dir, "cache")
+
+
+
 import subprocess
 import sys
 
@@ -25,7 +38,7 @@ import streamlit as st
 OPENAI_API_KEY = "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"
 llm = OpenAI(api_token=OPENAI_API_KEY)
 
-pandas_ai = PandasAI(llm)
+pandas_ai = PandasAI(llm, cache_file=cache_file)
 
 
 # load data
