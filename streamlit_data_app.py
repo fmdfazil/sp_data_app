@@ -21,9 +21,6 @@ import streamlit as st
 cache_dir = os.path.join(tempfile.gettempdir(), "pandasai_cache")
 os.makedirs(cache_dir, exist_ok=True)
 
-# Set the cache file path
-cache_file = os.path.join(cache_dir, "cache")
-
 # Upgrade pip and install packages
 def install_packages():
     subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
@@ -33,7 +30,7 @@ install_packages()
 # Defining model
 OPENAI_API_KEY = "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"
 llm = OpenAI(api_token=OPENAI_API_KEY)
-pandas_ai = PandasAI(llm, cache_file=cache_file)
+pandas_ai = PandasAI(llm)
 
 # load data
 df_long = pd.read_csv('dummy_data_long.csv')
