@@ -6,7 +6,14 @@
 #user_input = st.text_input('User:', value='', max_chars=500)
 #submit_button = st.button('Send')
 
-!pip install pandasai
+import subprocess
+import sys
+
+def install_packages():
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+
+install_packages()
+
 import pandas as pd
 from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
