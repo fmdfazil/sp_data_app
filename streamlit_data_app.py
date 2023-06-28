@@ -6,6 +6,7 @@
 #user_input = st.text_input('User:', value='', max_chars=500)
 #submit_button = st.button('Send')
 
+pip install pandasai
 import pandas as pd
 from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
