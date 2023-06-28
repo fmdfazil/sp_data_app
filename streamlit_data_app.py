@@ -21,7 +21,7 @@ pandas_ai = PandasAI(llm)
 
 
 # load data
-df_long = pd.read_csv(r'C:\Users\Mohamed.Fazil\dummy_data_long.csv')
+df_long = pd.read_csv('dummy_data_long.csv')
 
 
 st.title('Data Chat')
