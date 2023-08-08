@@ -72,9 +72,6 @@ data = {
 }
 df = pd.DataFrame(data)
 
-# Initialize chat history list
-chat_history = []
-
 # Streamlit UI
 st.title('Data Chat')
 st.sidebar.markdown('### Select Dataset')
@@ -84,27 +81,19 @@ submit_button = st.button('Send')
 
 # Handle user input
 if submit_button:
-    chat_history.append(('User', user_input))  # Add user input to chat history
-
     if selected_dataset == 'charging vio':
-        chat_history.append(('Bot', 'No data found'))
+        st.write("No data found")
     elif selected_dataset == 'vio based stations':
-        chat_history.append(('Bot', 'No data found'))
+        st.write("No data found")
     elif selected_dataset == 'Demand based stations':
-        chat_history.append(('Bot', 'No data found'))
+        st.write("No data found")
     elif selected_dataset == 'brand sales':
         if user_input == 'whats the most selling brand':
             most_selling_brand = df.loc[df['sales_volume'].idxmax(), 'brand_name']
-            chat_history.append(('Bot', f"The most selling brand is {most_selling_brand}"))
+            st.write(f"The most selling brand is {most_selling_brand}")
         elif user_input == 'what the sales by brand':
-            chat_history.append(('Bot', df.to_string(index=False)))
+            st.write(df)
         else:
-            chat_history.append(('Bot', 'No data found'))
-
-# Display chat history in the sidebar if it's not empty
-if chat_history:
-    st.sidebar.markdown('### Chat History')
-    for sender, message in chat_history:
-        st.sidebar.text(f'{sender}: {message}')
+            st.write("No data found")
 
 
