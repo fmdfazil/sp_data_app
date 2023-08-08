@@ -80,14 +80,15 @@ if submit_button:
     elif selected_dataset == 'brand sales':
         if user_input == 'whats the most selling brand':
             most_selling_brand = df.loc[df['sales_volume'].idxmax(), 'brand_name']
-            st.write(f"The most selling brand is {most_selling_brand}")
+            chat_history.append(('Bot', f"The most selling brand is {most_selling_brand}"))
         elif user_input == 'what the sales by brand':
-            st.write(df)
+            chat_history.append(('Bot', df.to_string(index=False)))
         else:
-            st.write("No data found")
+            chat_history.append(('Bot', 'No data found'))
 
-# Display chat history in the sidebar
-st.sidebar.markdown('### Chat History')
-for sender, message in chat_history:
-    st.sidebar.text(f'{sender}: {message}')
+# Display chat history in the sidebar if it's not empty
+if chat_history:
+    st.sidebar.markdown('### Chat History')
+    for sender, message in chat_history:
+        st.sidebar.text(f'{sender}: {message}')
 
