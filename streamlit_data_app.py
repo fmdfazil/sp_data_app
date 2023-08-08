@@ -62,6 +62,19 @@ df = pd.DataFrame(data)
 
 
 ##Iteration 3
+import streamlit as st
+import pandas as pd
+
+# Create the dataframe
+data = {
+    'brand_name': ['benz', 'bmw', 'audi', 'jaguar', 'toyota'],
+    'sales_volume': [100, 30, 80, 50, 500]
+}
+df = pd.DataFrame(data)
+
+# Initialize chat history list
+chat_history = []
+
 # Streamlit UI
 st.title('Data Chat')
 st.sidebar.markdown('### Select Dataset')
@@ -71,12 +84,14 @@ submit_button = st.button('Send')
 
 # Handle user input
 if submit_button:
+    chat_history.append(('User', user_input))  # Add user input to chat history
+
     if selected_dataset == 'charging vio':
-        st.write("No data found")
+        chat_history.append(('Bot', 'No data found'))
     elif selected_dataset == 'vio based stations':
-        st.write("No data found")
+        chat_history.append(('Bot', 'No data found'))
     elif selected_dataset == 'Demand based stations':
-        st.write("No data found")
+        chat_history.append(('Bot', 'No data found'))
     elif selected_dataset == 'brand sales':
         if user_input == 'whats the most selling brand':
             most_selling_brand = df.loc[df['sales_volume'].idxmax(), 'brand_name']
@@ -91,4 +106,5 @@ if chat_history:
     st.sidebar.markdown('### Chat History')
     for sender, message in chat_history:
         st.sidebar.text(f'{sender}: {message}')
+
 
