@@ -86,3 +86,8 @@ if submit_button:
         else:
             st.write("No data found")
 
+# Display chat history in the sidebar
+st.sidebar.markdown('### Chat History')
+for sender, message in chat_history:
+    st.sidebar.text(f'{sender}: {message}')
+
