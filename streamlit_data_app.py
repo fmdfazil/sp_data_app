@@ -69,7 +69,7 @@ user_input = st.text_input('User:', value='', max_chars=500)
 submit_button = st.button('Send')
 
 # Cache for storing results
-@st.cache
+@st.cache_data
 def compute_result(input_text):
     if input_text == 'whats the most selling brand':
         most_selling_brand = df.loc[df['sales_volume'].idxmax(), 'brand_name']
